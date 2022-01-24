@@ -110,7 +110,7 @@ int WatchdogSAMD::enable(int maxPeriodMS, bool isForSleep) {
     while (WDT->SYNCBUSY.reg)
       ; // Sync CTRL write
   } else {
-    WDT->INTENCLR.bit.EW = 1;   // Disable early warning interrupt
+    WDT->INTENCLR.bit.EW = 0;   // Disable early warning interrupt
     WDT->CONFIG.bit.PER = bits; // Set period for chip reset
     WDT->CTRLA.bit.WEN = 0;     // Disable window mode
     while (WDT->SYNCBUSY.reg)
@@ -130,7 +130,7 @@ int WatchdogSAMD::enable(int maxPeriodMS, bool isForSleep) {
     while (WDT->STATUS.bit.SYNCBUSY)
       ; // Sync CTRL write
   } else {
-    WDT->INTENCLR.bit.EW = 1;   // Disable early warning interrupt
+    WDT->INTENCLR.bit.EW = 0;   // Disable early warning interrupt
     WDT->CONFIG.bit.PER = bits; // Set period for chip reset
     WDT->CTRL.bit.WEN = 0;      // Disable window mode
     while (WDT->STATUS.bit.SYNCBUSY)
